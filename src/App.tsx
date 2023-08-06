@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useAppData } from "./hooks/useAppData";
 
 function App() {
+  const [data, setData] = useAppData();
+
+  useEffect(() => {
+    setData({ category: "product2" });
+  }, [setData]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ textAlign: "center" }}>
+      <h1>Welcome to sample-app-shared</h1>
+      <p>Category: {data.category}</p>
     </div>
   );
 }
