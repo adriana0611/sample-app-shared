@@ -1,5 +1,5 @@
 export type SampleAppContextData = {
-  product: string;
+  product: "Product 1" | "Product 2";
   data: any;
   name: string;
   number: number;
