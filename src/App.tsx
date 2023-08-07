@@ -1,28 +1,33 @@
-import { useEffect } from "react";
+import React from "react";
 
-import { useAppData } from "./hooks/useAppData";
-import { Module } from "./components";
+import { Module } from "./components/Module";
+import {
+  SampleAppContext,
+  SampleAppContextProvider,
+} from "./contexts/sample-app";
 
 function App() {
-  const [data, setData] = useAppData();
-
-  useEffect(() => {
-    setData({ category: "product2" });
-  }, [setData]);
-
   return (
-    <div style={{ padding: 16 }}>
-      <div style={{ textAlign: "center" }}>
-        <h1>Welcome to sample-app-shared</h1>
-        <p>Category: {data.category}</p>
-      </div>
+    <SampleAppContextProvider>
+      <SampleAppContext.Consumer>
+        {(data) => {
+          return (
+            <div style={{ padding: 16 }}>
+              <div style={{ textAlign: "center" }}>
+                <h1>Welcome to sample-app-shared</h1>
+                <p>Category: {data.product}</p>
+              </div>
 
-      <div style={{ marginTop: 32 }}>
-        <Module name="Module Name">
-          <p>Module Content</p>
-        </Module>
-      </div>
-    </div>
+              <div style={{ marginTop: 32 }}>
+                <Module name="Module Name">
+                  <p>Module Content</p>
+                </Module>
+              </div>
+            </div>
+          );
+        }}
+      </SampleAppContext.Consumer>
+    </SampleAppContextProvider>
   );
 }
 

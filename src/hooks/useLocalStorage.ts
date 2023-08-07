@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 import localStorageAvailable from "../utils/localStorageAvailable";
 
@@ -29,21 +29,18 @@ export default function useLocalStorage<ValueType>(
     };
   }, [key, defaultValue]);
 
-  const setValueInLocalStorage = useCallback(
-    (newValue: ValueType) => {
-      setValue((currentValue: ValueType) => {
-        const result =
-          typeof newValue === "function" ? newValue(currentValue) : newValue;
+  const setValueInLocalStorage = (newValue: ValueType) => {
+    setValue((currentValue: ValueType) => {
+      const result =
+        typeof newValue === "function" ? newValue(currentValue) : newValue;
 
-        if (storageAvailable) {
-          localStorage.setItem(key, JSON.stringify(result));
-        }
+      if (storageAvailable) {
+        localStorage.setItem(key, JSON.stringify(result));
+      }
 
-        return result;
-      });
-    },
-    [key, setValue, storageAvailable]
-  );
+      return result;
+    });
+  };
 
   return [value, setValueInLocalStorage];
 }
