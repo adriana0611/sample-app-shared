@@ -16,7 +16,7 @@
     "jsx": "react-jsx",
     "importHelpers": true,
     "declaration": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "rootDir": "./src",
     "outDir": "./dist/esm",
     "noImplicitReturns": true,
